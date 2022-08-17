@@ -1,47 +1,50 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useParams } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './home/home';
-//import Footer from './footer/Footer';
-import { ExhibitionDetail } from './exhibition/exhibitionDetailt';
+
+import Home from './pages/home/home';
+import { ExhibitionDetailPage } from './pages/exhibition/exhibitionDetailtPages';
 
 import { Login, Register, DeleteUser, ReviseUser } from './user';
 
 //const Login=lazy(()=>import('./user/login'))
 //const User = lazy(() => import('./user'));
 import './App.css';
-import HomeNav from './home/homenav';
-import ProposalList from './proposal/proposalList';
-import ExhibitionList from './exhibition/exhibitionListPages';
-import exhibitionProject from './data/data';
-import { exhibitionProjects } from './api/exhibition/exhibitionProject';
-import { PropsalDetail } from './proposal/proposalDetail';
-import WritePage from './write/WritePage';
 
+import HomeNav from './components/home/homenav';
+import Write from './pages/write/write';
+import WriteMiddle from './components/write/writeMiddle';
+import ProposalListPage from './pages/proposal/proposalListPage';
+import ExhibitionListPage from './pages/exhibition/exhibitionListPages';
+import { PropsalDetailPage } from './pages/proposal/proposalDetailPage';
+import RecruitmentListPage from './pages/recruitment/recruitmentListPage';
+import { RecrutmentDetailPage } from './pages/recruitment/recruitmentDetailPage';
+import { Messenger } from './messenger/messenger';
 
 function App() {
-  // useEffect(() => {
-  //   exhibitionProjects();
-  // }, []);
   return (
     <BrowserRouter>
       <div className="App">
         <HomeNav />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/proposalList" element={<ProposalList />} />
-          <Route
-            path="/proposalDetail/:id"
-            element={<PropsalDetail exhibitionProject={exhibitionProject} />}
-          />
+          <Route path="/write" element={<Write />} />
+          <Route path="/writeMiddle" element={<WriteMiddle />} />
+          <Route path="/messenger" element={<Messenger />} />
+          <Route path="/proposalList" element={<ProposalListPage />} />
+          <Route path="/proposalDetail/:id" element={<PropsalDetailPage />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/exhibitionList" element={<ExhibitionList />} />
+          <Route path="/exhibitionList" element={<ExhibitionListPage />} />
           <Route
             path="/exhibitionDetail/:id"
-            element={<ExhibitionDetail exhibitionProject={exhibitionProject} />}
+            element={<ExhibitionDetailPage />}
           />
-          <Route path="proposalList/write" element={<WritePage />}
+
+          <Route path="/recruitmentList" element={<RecruitmentListPage />} />
+          <Route
+            path="/recruitmentDetail/:id"
+            element={<RecrutmentDetailPage />}
           />
         </Routes>
       </div>

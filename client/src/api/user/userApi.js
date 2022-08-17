@@ -1,24 +1,21 @@
 import axios from 'axios';
-
+const token = localStorage.getItem('token');
 const userApi = {
   loginApi: function loginApi(body) {
-    return axios.post('http://localhost:8000/api/user/login', body);
+    return axios.post('/api/user/login', body);
   },
   registerApi: function registerApi(body) {
-    return axios
-      .post('http://localhost:8000/api/user/register', body)
-
-      .then((res) => {
-        alert('회원가입 정상적으로 되었습니다 ');
-        window.location.href = '/login';
-      });
+    return axios.post('/api/user', body);
   },
-  homeNavApi: function homeNavApi(token) {
-    return axios.get('http://localhost:8000/api/user/info', {
+  homeNavApi: function homeNavApi() {
+    return axios.get('/api/user', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+  },
+  findUserInfo: function findUserInfo(userId) {
+    return axios.get(`./api/user/${userId}`);
   },
 };
 export default userApi;
